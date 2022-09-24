@@ -1,0 +1,95 @@
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+ struct Node *head;
+int main()
+{
+    int n;
+    printf("Enter the total number of nodes:");
+    scanf("%d", &n);
+    createList(n);
+    printf("Data in the list \n");
+    traverseList();
+    printf("\nTo find an element in a linked list.\n");
+    findelement();
+    return 0;
+}
+void createList(int n)
+{
+    struct Node *Newnode, *temp;
+    int data, i;
+    head = (struct Node *)malloc(sizeof(struct Node));
+    if (head == NULL)
+    {
+        printf("Unable to allocate memory\n");
+        exit(0);
+    }
+    printf("Enter the data of node 1:");
+    scanf("%d", &data);
+    head->data = data;
+    head->next = NULL;
+    temp = head;
+    for (i = 2; i <= n; i++)
+    {
+        Newnode = (struct Node *)malloc(sizeof(struct Node));
+        if (Newnode == NULL)
+        {
+            printf("Unable to allocate \n");
+            break;
+        }
+        printf("Enter data of node %d:", i) ;
+        scanf("%d", &data);
+        Newnode->data = data;
+        Newnode->next = NULL;
+        temp->next = Newnode;
+        temp = temp->next;
+    }
+}
+void traverseList()
+{
+    struct Node *temp;
+    if (head == NULL)
+    {
+        printf("List is empty \n");
+        return ;
+    }
+    temp = head;
+    printf("Data: ");
+    while (temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+//finding an element in linked list 
+void findelement()
+{
+    struct Node *ptr;
+    int element;
+    printf("Enter the element you want to search in linked list\n");
+    scanf("%d",&element);
+    if (head==NULL)
+    {
+        printf("Element not found\n");
+        return;
+
+    }
+    ptr=head;
+    while (ptr!=NULL)
+    {
+        if (ptr->data==element)
+        {
+            printf("Element found!!");
+            break;
+        }
+        else{
+            ptr=ptr->next;
+        }
+    }
+    
+    
+
+}
