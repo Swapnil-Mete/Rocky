@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+void CreateNode(int);
+void traverse();
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head;
+void main()
+{
+    int choice, item;
+    do
+    {
+        printf("\n1.Insert Node\n2.Traverse \n3.Exit\n4.Enter your choice:\n");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            printf("\n Enter the element to insert :\n");
+            scanf("%d", &item); break;
+        case 2:
+            traverse();
+            break;
+        case 3:
+            exit(0);
+            break;
+        default:
+            printf("\n Please enter a valid choice \n");
+            break;
+        }
+    } while (choice != 3);
+}
+//error in this segment .
+void createNode(int item)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node *));
+    if (ptr == NULL)
+    {
+        printf("\n OVERFLOW\n");
+    }
+    else
+    {
+        ptr->data = item;
+        ptr->next = head;
+        head = ptr;
+        printf("\n Node inserted successfully!!\n");
+    }
+}
+void traverse()
+{
+    struct node *ptr;
+    ptr = head;
+    if (ptr == NULL)
+    {
+        printf("List is empty :\n");
+    }
+    else
+    {
+        printf("Printing values .....\n");
+        while (ptr != NULL)
+        {
+            printf("\n%d", ptr->data);
+            ptr = ptr->next;
+        }
+    }
+}
