@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+struct Node *head;
+int main()
+{
+    struct Node *newnode, *temp;
+    int item, opinion;
+    head = (struct Node *)malloc(sizeof(struct Node));
+    printf("Enter the data \n");
+    scanf("%d", &item);
+    head->data = item;
+    head->next = NULL;
+    temp = head;
+    while (1)
+    {
+        printf("\nEnter 1->To insert a node \n2->To traverse\n3->To exit\n ");
+        scanf("%d", &opinion);
+        switch (opinion)
+        {
+        case 1:
+            newnode = (struct Node *)malloc(sizeof(struct Node));
+            printf("Enter your data\n");
+            scanf("%d", &item);
+            newnode->data = item;
+            newnode->next = NULL;
+            temp->next = newnode;
+            temp = temp->next;
+            break;
+        case 2:
+            traverse();
+            break;
+        case 3:
+            printf("\nThanks for using:)\n");
+            exit(0);
+            break;
+        default:
+            printf("Enter valid choice\n");
+            break;
+        }
+    }
+}
+void traverse()
+{
+    struct Node *ptr;
+    if (head == NULL)
+    {
+        printf("List is empty\n");
+        return;
+    }
+    ptr = head;
+    while (ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    }
+}
